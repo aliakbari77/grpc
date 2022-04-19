@@ -14,12 +14,13 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10helloworld.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2\x8e\x01\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x43\n\rSayHelloAgain\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10helloworld.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t\"2\n\x06Person\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x66\x61mily\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\x03\x32\x84\x01\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x39\n\rSayHelloAgain\x12\x12.helloworld.Person\x1a\x12.helloworld.Person\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
 
 
 
 _HELLOREQUEST = DESCRIPTOR.message_types_by_name['HelloRequest']
 _HELLOREPLY = DESCRIPTOR.message_types_by_name['HelloReply']
+_PERSON = DESCRIPTOR.message_types_by_name['Person']
 HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), {
   'DESCRIPTOR' : _HELLOREQUEST,
   '__module__' : 'helloworld_pb2'
@@ -34,6 +35,13 @@ HelloReply = _reflection.GeneratedProtocolMessageType('HelloReply', (_message.Me
   })
 _sym_db.RegisterMessage(HelloReply)
 
+Person = _reflection.GeneratedProtocolMessageType('Person', (_message.Message,), {
+  'DESCRIPTOR' : _PERSON,
+  '__module__' : 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:helloworld.Person)
+  })
+_sym_db.RegisterMessage(Person)
+
 _GREETER = DESCRIPTOR.services_by_name['Greeter']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -43,6 +51,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _HELLOREQUEST._serialized_end=60
   _HELLOREPLY._serialized_start=62
   _HELLOREPLY._serialized_end=91
-  _GREETER._serialized_start=94
-  _GREETER._serialized_end=236
+  _PERSON._serialized_start=93
+  _PERSON._serialized_end=143
+  _GREETER._serialized_start=146
+  _GREETER._serialized_end=278
 # @@protoc_insertion_point(module_scope)

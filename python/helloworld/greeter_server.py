@@ -22,7 +22,8 @@ import helloworld_pb2_grpc
 
 # For add new function:
 #   1) add new rpc to helloworld.proto
-#   2) now we need to update the grpc code used by our application
+#   2)NOTE: 
+#      now we need to update the grpc code used by our application
 #      to use the new service definition.
 #      at examples/python/helloworld:
 #      python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/helloworld.proto
@@ -34,8 +35,11 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
     def SayHello(self, request, context):
         return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
     
+    # add new fuction to server.
     def SayHelloAgain(self, request, context):
-        return helloworld_pb2.HelloReply(message="Hello again, %s!" % request.name)
+        # we can not send request only.
+        # because the person should get at least name, family, id.
+        return helloworld_pb2.Person(name=request.name, family=request.family, id=request.id)
 
 
 def serve():

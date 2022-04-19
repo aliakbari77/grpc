@@ -30,8 +30,13 @@ def run():
         stub = helloworld_pb2_grpc.GreeterStub(channel)
         response = stub.SayHello(helloworld_pb2.HelloRequest(name=input("enter your name: ")))
         print("Greeter client received: " + response.message)
-        response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name=input("enter your name: ")))
-        print("Greeter client received: " + response.message)
+
+        # use the new funtion that defined at server
+        name = input("enter your name: ")
+        family = input("enter your family: ")
+        id = int(input("enter your id: "))
+        response = stub.SayHelloAgain(helloworld_pb2.Person(name=name, family=family, id=id))
+        print("-------\nRESPONSE FROM SERVER:\n" + str(response))
 
 
 if __name__ == '__main__':

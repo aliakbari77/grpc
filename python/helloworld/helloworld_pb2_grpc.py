@@ -22,8 +22,8 @@ class GreeterStub(object):
                 )
         self.SayHelloAgain = channel.unary_unary(
                 '/helloworld.Greeter/SayHelloAgain',
-                request_serializer=helloworld__pb2.HelloRequest.SerializeToString,
-                response_deserializer=helloworld__pb2.HelloReply.FromString,
+                request_serializer=helloworld__pb2.Person.SerializeToString,
+                response_deserializer=helloworld__pb2.Person.FromString,
                 )
 
 
@@ -39,7 +39,8 @@ class GreeterServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SayHelloAgain(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """add new rpc
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -54,8 +55,8 @@ def add_GreeterServicer_to_server(servicer, server):
             ),
             'SayHelloAgain': grpc.unary_unary_rpc_method_handler(
                     servicer.SayHelloAgain,
-                    request_deserializer=helloworld__pb2.HelloRequest.FromString,
-                    response_serializer=helloworld__pb2.HelloReply.SerializeToString,
+                    request_deserializer=helloworld__pb2.Person.FromString,
+                    response_serializer=helloworld__pb2.Person.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -97,7 +98,7 @@ class Greeter(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/SayHelloAgain',
-            helloworld__pb2.HelloRequest.SerializeToString,
-            helloworld__pb2.HelloReply.FromString,
+            helloworld__pb2.Person.SerializeToString,
+            helloworld__pb2.Person.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
