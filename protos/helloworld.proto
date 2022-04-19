@@ -43,6 +43,10 @@ message HelloReply {
   string message = 1;
 }
 
+// define new message: 
+// for define new message just we should
+// add new message here. JUST THAT
+// then we should regenerate our application.
 message Person{
   string name = 1;
   string family = 2;
