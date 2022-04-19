@@ -28,15 +28,19 @@ def run():
     # of the code.
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = helloworld_pb2_grpc.GreeterStub(channel)
-        response = stub.SayHello(helloworld_pb2.HelloRequest(name=input("enter your name: ")))
-        print("Greeter client received: " + response.message)
+        # response = stub.SayHello(helloworld_pb2.HelloRequest(name=input("enter your name: ")))
+        # print("Greeter client received: " + response.message)
 
         # use the new funtion that defined at server
-        name = input("enter your name: ")
-        family = input("enter your family: ")
-        id = int(input("enter your id: "))
-        response = stub.SayHelloAgain(helloworld_pb2.Person(name=name, family=family, id=id))
-        print("-------\nRESPONSE FROM SERVER:\n" + str(response))
+        # name = input("enter your name: ")
+        # family = input("enter your family: ")
+        # id = int(input("enter your id: "))
+        # response = stub.SayHelloAgain(helloworld_pb2.Person(name=name, family=family, id=id))
+        # print("-------\nRESPONSE FROM SERVER:\n" + str(response))
+
+        # use the calculation function that defined at server
+        response = stub.Calculation(helloworld_pb2.Factor(a = 1, b = -11, c = 30))
+        print(response)
 
 
 if __name__ == '__main__':

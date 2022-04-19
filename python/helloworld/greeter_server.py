@@ -15,6 +15,7 @@
 
 from concurrent import futures
 import logging
+import math
 
 import grpc
 import helloworld_pb2
@@ -40,6 +41,26 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
         # we can not send request only.
         # because the person should get at least name, family, id.
         return helloworld_pb2.Person(name=request.name, family=request.family, id=request.id)
+
+    def Calculation(self, request, context):
+        a = request.a
+        b = request.b
+        c = request.c
+        delta = b * b - 4 * a * c
+        x = []
+        if delta > 0:
+            x_1 = (-b + math.sqrt(delta))/(2*a)
+            x_2 = (-b - math.sqrt(delta))/(2*a)
+            x.append(str(x_1))
+            x.append(str(x_2))           
+        elif delta == 0:
+            x_1 = -b/(2*a)
+            x.append(str(x_1))
+        else:
+            x_1 = "NO ANSWER."
+            x.append(x_1)
+        
+        return helloworld_pb2.Result(x = x)
 
 
 def serve():

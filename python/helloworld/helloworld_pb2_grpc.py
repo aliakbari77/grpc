@@ -25,6 +25,11 @@ class GreeterStub(object):
                 request_serializer=helloworld__pb2.Person.SerializeToString,
                 response_deserializer=helloworld__pb2.Person.FromString,
                 )
+        self.Calculation = channel.unary_unary(
+                '/helloworld.Greeter/Calculation',
+                request_serializer=helloworld__pb2.Factor.SerializeToString,
+                response_deserializer=helloworld__pb2.Result.FromString,
+                )
 
 
 class GreeterServicer(object):
@@ -45,6 +50,13 @@ class GreeterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Calculation(self, request, context):
+        """add Calculation rps
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -57,6 +69,11 @@ def add_GreeterServicer_to_server(servicer, server):
                     servicer.SayHelloAgain,
                     request_deserializer=helloworld__pb2.Person.FromString,
                     response_serializer=helloworld__pb2.Person.SerializeToString,
+            ),
+            'Calculation': grpc.unary_unary_rpc_method_handler(
+                    servicer.Calculation,
+                    request_deserializer=helloworld__pb2.Factor.FromString,
+                    response_serializer=helloworld__pb2.Result.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -100,5 +117,22 @@ class Greeter(object):
         return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/SayHelloAgain',
             helloworld__pb2.Person.SerializeToString,
             helloworld__pb2.Person.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Calculation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/Calculation',
+            helloworld__pb2.Factor.SerializeToString,
+            helloworld__pb2.Result.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
