@@ -62,6 +62,9 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
         
         return helloworld_pb2.Result(x = x)
 
+    def Bidirec(self, request, context):
+        return helloworld_pb2.HelloReply(message="hello, %s!" % request.name)
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

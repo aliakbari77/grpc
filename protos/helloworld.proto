@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// after any change of this file we should run this script:
+// python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/helloworld.proto
+
 syntax = "proto3";
 
 option java_multiple_files = true;
@@ -31,6 +34,8 @@ service Greeter {
   
   // add Calculation rps
   rpc Calculation (Factor) returns (Result) {}
+
+  rpc Bidirec(stream HelloRequest) returns (stream HelloReply) {}
 }
 
 // The request message containing the user's name.

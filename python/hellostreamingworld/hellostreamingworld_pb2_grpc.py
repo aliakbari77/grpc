@@ -18,6 +18,11 @@ class MultiGreeterStub(object):
         self.sayHello = channel.unary_stream(
                 '/hellostreamingworld.MultiGreeter/sayHello',
                 request_serializer=hellostreamingworld__pb2.HelloRequest.SerializeToString,
+                response_deserializer=hellostreamingworld__pb2.HelloReplyAgain.FromString,
+                )
+        self.sayHelloAgain = channel.unary_stream(
+                '/hellostreamingworld.MultiGreeter/sayHelloAgain',
+                request_serializer=hellostreamingworld__pb2.HelloRequest.SerializeToString,
                 response_deserializer=hellostreamingworld__pb2.HelloReply.FromString,
                 )
 
@@ -33,11 +38,22 @@ class MultiGreeterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def sayHelloAgain(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MultiGreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'sayHello': grpc.unary_stream_rpc_method_handler(
                     servicer.sayHello,
+                    request_deserializer=hellostreamingworld__pb2.HelloRequest.FromString,
+                    response_serializer=hellostreamingworld__pb2.HelloReplyAgain.SerializeToString,
+            ),
+            'sayHelloAgain': grpc.unary_stream_rpc_method_handler(
+                    servicer.sayHelloAgain,
                     request_deserializer=hellostreamingworld__pb2.HelloRequest.FromString,
                     response_serializer=hellostreamingworld__pb2.HelloReply.SerializeToString,
             ),
@@ -64,6 +80,23 @@ class MultiGreeter(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/hellostreamingworld.MultiGreeter/sayHello',
+            hellostreamingworld__pb2.HelloRequest.SerializeToString,
+            hellostreamingworld__pb2.HelloReplyAgain.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def sayHelloAgain(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/hellostreamingworld.MultiGreeter/sayHelloAgain',
             hellostreamingworld__pb2.HelloRequest.SerializeToString,
             hellostreamingworld__pb2.HelloReply.FromString,
             options, channel_credentials,

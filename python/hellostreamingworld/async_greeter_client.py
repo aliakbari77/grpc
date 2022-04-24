@@ -15,6 +15,7 @@
 
 import asyncio
 import logging
+from unicodedata import name
 
 import grpc
 import hellostreamingworld_pb2
@@ -26,20 +27,23 @@ async def run() -> None:
         stub = hellostreamingworld_pb2_grpc.MultiGreeterStub(channel)
 
         # Read from an async generator
-        async for response in stub.sayHello(
-            hellostreamingworld_pb2.HelloRequest(name="you")):
-            print("Greeter client received from async generator: " +
-                  response.message)
+        # async for response in stub.sayHello(
+        #     hellostreamingworld_pb2.HelloRequest(name="getApp")):
+        #     print(response)
+
+        async for response in stub.sayHelloAgain(
+            hellostreamingworld_pb2.HelloRequest(name="getOs")):
+            print(response)
 
         # Direct read from the stub
-        hello_stream = stub.sayHello(
-            hellostreamingworld_pb2.HelloRequest(name="you"))
-        while True:
-            response = await hello_stream.read()
-            if response == grpc.aio.EOF:
-                break
-            print("Greeter client received from direct read: " +
-                  response.message)
+        # hello_stream = stub.sayHello(
+        #     hellostreamingworld_pb2.HelloRequest(name="you"))
+        # while True:
+        #     response = await hello_stream.read()
+        #     if response == grpc.aio.EOF:
+        #         break
+        #     print("Greeter client received from direct read: " +
+        #           response.message)
 
 
 if __name__ == "__main__":

@@ -39,7 +39,10 @@ def run():
         # print("-------\nRESPONSE FROM SERVER:\n" + str(response))
 
         # use the calculation function that defined at server
-        response = stub.Calculation(helloworld_pb2.Factor(a = 1, b = -11, c = 30))
+        # response = stub.Calculation(helloworld_pb2.Factor(a = 1, b = -11, c = 30))
+        # print(response)
+
+        response = stub.Bidirec(helloworld_pb2.HelloRequest(name='taghi'))
         print(response)
 
 
