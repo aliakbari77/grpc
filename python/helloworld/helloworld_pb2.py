@@ -14,15 +14,39 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10helloworld.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t\"2\n\x06Person\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x66\x61mily\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\x03\")\n\x06\x46\x61\x63tor\x12\t\n\x01\x61\x18\x01 \x01(\x03\x12\t\n\x01\x62\x18\x02 \x01(\x03\x12\t\n\x01\x63\x18\x03 \x01(\x03\"\x13\n\x06Result\x12\t\n\x01x\x18\x01 \x03(\t2\x80\x02\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x39\n\rSayHelloAgain\x12\x12.helloworld.Person\x1a\x12.helloworld.Person\"\x00\x12\x37\n\x0b\x43\x61lculation\x12\x12.helloworld.Factor\x1a\x12.helloworld.Result\"\x00\x12\x41\n\x07\x42idirec\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00(\x01\x30\x01\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10helloworld.proto\x12\nhelloworld\"b\n\x08Software\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x03\x12\x0c\n\x04type\x18\x03 \x01(\x03\x12\r\n\x05title\x18\x04 \x01(\t\x12\x0c\n\x04\x64\x65sc\x18\x05 \x01(\t\x12\x0f\n\x07version\x18\x06 \x01(\t\"=\n\x0cListSoftware\x12\x0b\n\x03ids\x18\x01 \x03(\t\x12\x0c\n\x04type\x18\x02 \x01(\x03\x12\x12\n\nclientUUID\x18\x03 \x01(\t\"R\n\x10ListSoftwareResp\x12\x12\n\nclientUUID\x18\x01 \x01(\t\x12*\n\x0cSoftwareList\x18\x02 \x03(\x0b\x32\x14.helloworld.Software\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t\"2\n\x06Person\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x66\x61mily\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\x03\")\n\x06\x46\x61\x63tor\x12\t\n\x01\x61\x18\x01 \x01(\x03\x12\t\n\x01\x62\x18\x02 \x01(\x03\x12\t\n\x01\x63\x18\x03 \x01(\x03\"\x13\n\x06Result\x12\t\n\x01x\x18\x01 \x03(\t2\x8b\x02\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x39\n\rSayHelloAgain\x12\x12.helloworld.Person\x1a\x12.helloworld.Person\"\x00\x12\x37\n\x0b\x43\x61lculation\x12\x12.helloworld.Factor\x1a\x12.helloworld.Result\"\x00\x12L\n\x10listApplications\x12\x18.helloworld.ListSoftware\x1a\x1c.helloworld.ListSoftwareResp\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
 
 
 
+_SOFTWARE = DESCRIPTOR.message_types_by_name['Software']
+_LISTSOFTWARE = DESCRIPTOR.message_types_by_name['ListSoftware']
+_LISTSOFTWARERESP = DESCRIPTOR.message_types_by_name['ListSoftwareResp']
 _HELLOREQUEST = DESCRIPTOR.message_types_by_name['HelloRequest']
 _HELLOREPLY = DESCRIPTOR.message_types_by_name['HelloReply']
 _PERSON = DESCRIPTOR.message_types_by_name['Person']
 _FACTOR = DESCRIPTOR.message_types_by_name['Factor']
 _RESULT = DESCRIPTOR.message_types_by_name['Result']
+Software = _reflection.GeneratedProtocolMessageType('Software', (_message.Message,), {
+  'DESCRIPTOR' : _SOFTWARE,
+  '__module__' : 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:helloworld.Software)
+  })
+_sym_db.RegisterMessage(Software)
+
+ListSoftware = _reflection.GeneratedProtocolMessageType('ListSoftware', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSOFTWARE,
+  '__module__' : 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:helloworld.ListSoftware)
+  })
+_sym_db.RegisterMessage(ListSoftware)
+
+ListSoftwareResp = _reflection.GeneratedProtocolMessageType('ListSoftwareResp', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSOFTWARERESP,
+  '__module__' : 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:helloworld.ListSoftwareResp)
+  })
+_sym_db.RegisterMessage(ListSoftwareResp)
+
 HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), {
   'DESCRIPTOR' : _HELLOREQUEST,
   '__module__' : 'helloworld_pb2'
@@ -63,16 +87,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW'
-  _HELLOREQUEST._serialized_start=32
-  _HELLOREQUEST._serialized_end=60
-  _HELLOREPLY._serialized_start=62
-  _HELLOREPLY._serialized_end=91
-  _PERSON._serialized_start=93
-  _PERSON._serialized_end=143
-  _FACTOR._serialized_start=145
-  _FACTOR._serialized_end=186
-  _RESULT._serialized_start=188
-  _RESULT._serialized_end=207
-  _GREETER._serialized_start=210
-  _GREETER._serialized_end=466
+  _SOFTWARE._serialized_start=32
+  _SOFTWARE._serialized_end=130
+  _LISTSOFTWARE._serialized_start=132
+  _LISTSOFTWARE._serialized_end=193
+  _LISTSOFTWARERESP._serialized_start=195
+  _LISTSOFTWARERESP._serialized_end=277
+  _HELLOREQUEST._serialized_start=279
+  _HELLOREQUEST._serialized_end=307
+  _HELLOREPLY._serialized_start=309
+  _HELLOREPLY._serialized_end=338
+  _PERSON._serialized_start=340
+  _PERSON._serialized_end=390
+  _FACTOR._serialized_start=392
+  _FACTOR._serialized_end=433
+  _RESULT._serialized_start=435
+  _RESULT._serialized_end=454
+  _GREETER._serialized_start=457
+  _GREETER._serialized_end=724
 # @@protoc_insertion_point(module_scope)

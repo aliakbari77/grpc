@@ -30,10 +30,10 @@ class GreeterStub(object):
                 request_serializer=helloworld__pb2.Factor.SerializeToString,
                 response_deserializer=helloworld__pb2.Result.FromString,
                 )
-        self.Bidirec = channel.stream_stream(
-                '/helloworld.Greeter/Bidirec',
-                request_serializer=helloworld__pb2.HelloRequest.SerializeToString,
-                response_deserializer=helloworld__pb2.HelloReply.FromString,
+        self.listApplications = channel.unary_unary(
+                '/helloworld.Greeter/listApplications',
+                request_serializer=helloworld__pb2.ListSoftware.SerializeToString,
+                response_deserializer=helloworld__pb2.ListSoftwareResp.FromString,
                 )
 
 
@@ -62,7 +62,7 @@ class GreeterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Bidirec(self, request_iterator, context):
+    def listApplications(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -86,10 +86,10 @@ def add_GreeterServicer_to_server(servicer, server):
                     request_deserializer=helloworld__pb2.Factor.FromString,
                     response_serializer=helloworld__pb2.Result.SerializeToString,
             ),
-            'Bidirec': grpc.stream_stream_rpc_method_handler(
-                    servicer.Bidirec,
-                    request_deserializer=helloworld__pb2.HelloRequest.FromString,
-                    response_serializer=helloworld__pb2.HelloReply.SerializeToString,
+            'listApplications': grpc.unary_unary_rpc_method_handler(
+                    servicer.listApplications,
+                    request_deserializer=helloworld__pb2.ListSoftware.FromString,
+                    response_serializer=helloworld__pb2.ListSoftwareResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -154,7 +154,7 @@ class Greeter(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def Bidirec(request_iterator,
+    def listApplications(request,
             target,
             options=(),
             channel_credentials=None,
@@ -164,8 +164,8 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/helloworld.Greeter/Bidirec',
-            helloworld__pb2.HelloRequest.SerializeToString,
-            helloworld__pb2.HelloReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/listApplications',
+            helloworld__pb2.ListSoftware.SerializeToString,
+            helloworld__pb2.ListSoftwareResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

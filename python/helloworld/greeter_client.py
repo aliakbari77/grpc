@@ -17,6 +17,8 @@ from __future__ import print_function
 
 import logging
 
+import time
+from urllib import response
 import grpc
 import helloworld_pb2
 import helloworld_pb2_grpc
@@ -39,11 +41,16 @@ def run():
         # print("-------\nRESPONSE FROM SERVER:\n" + str(response))
 
         # use the calculation function that defined at server
-        # response = stub.Calculation(helloworld_pb2.Factor(a = 1, b = -11, c = 30))
-        # print(response)
+        # while True:
+        #     response = stub.Calculation(helloworld_pb2.Factor(a = 1, b = -11, c = 30))
+        #     print(response)
+        #     time.sleep(3)
 
-        response = stub.Bidirec(helloworld_pb2.HelloRequest(name='taghi'))
+        response = stub.listApplications(helloworld_pb2.ListSoftware(ids=["1"], type=1, clientUUID="clientUUID"))
         print(response)
+
+
+        
 
 
 if __name__ == '__main__':

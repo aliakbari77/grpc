@@ -62,8 +62,18 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
         
         return helloworld_pb2.Result(x = x)
 
-    def Bidirec(self, request, context):
-        return helloworld_pb2.HelloReply(message="hello, %s!" % request.name)
+    def listApplications(self, request, context):
+        print(request.ids[0])
+        return helloworld_pb2.ListSoftwareResp(
+            clientUUID=request.clientUUID,
+            SoftwareList=[
+                {"id": request.ids[0], 
+                "status": 1, 
+                "type": request.type, 
+                "title": "title", 
+                "desc": "desc", 
+                "version": "version"}
+                ])
 
 
 def serve():

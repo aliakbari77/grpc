@@ -22,6 +22,26 @@ import hellostreamingworld_pb2
 import hellostreamingworld_pb2_grpc
 
 
+async def runSayHelloAgain(stub) -> None:
+    async for response in stub.sayHelloAgain(
+            hellostreamingworld_pb2.HelloRequest(name="getOs")):
+            print(response)
+            # select = input("continue: ")
+            # if (select == "yes"):
+            #     continue
+            # else:
+            #     break
+
+async def runSayHello(stub) -> None:
+    async for response in stub.sayHello(
+            hellostreamingworld_pb2.HelloRequest(name="getApp")):
+            print(response)
+            # select = input("continue: ")
+            # if (select == "yes"):
+            #     continue
+            # else:
+            #     break
+
 async def run() -> None:
     async with grpc.aio.insecure_channel("localhost:50051") as channel:
         stub = hellostreamingworld_pb2_grpc.MultiGreeterStub(channel)
@@ -30,10 +50,16 @@ async def run() -> None:
         # async for response in stub.sayHello(
         #     hellostreamingworld_pb2.HelloRequest(name="getApp")):
         #     print(response)
+        while True:
+            select = input("choose your service: ")
+            if (select == 'app'):
+                await runSayHello(stub)
+            if (select == 'os'):
+                await runSayHelloAgain(stub)
 
-        async for response in stub.sayHelloAgain(
-            hellostreamingworld_pb2.HelloRequest(name="getOs")):
-            print(response)
+        # async for response in stub.sayHelloAgain(
+        #     hellostreamingworld_pb2.HelloRequest(name="getOs")):
+        #     print(response)
 
         # Direct read from the stub
         # hello_stream = stub.sayHello(
